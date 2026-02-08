@@ -1,0 +1,18 @@
+public_html/wp-content/uploads/
+public_html/wp-content/wp-staging/backups/
+
+# Ignore large backup files created by WP Staging
+public_html/wp-content/wp-staging/backups/*.wpstg
+
+# Ignore local environment files
+/.env
+/.env.local
+/.env.*.local
+
+# Ignore composer and node modules
+/public_html/vendor/
+/public_html/node_modules/
+
+# Ignore WordPress uploads cache and tmp
+/public_html/wp-content/uploads/cache/
+/public_html/wp-content/uploads/tmp/

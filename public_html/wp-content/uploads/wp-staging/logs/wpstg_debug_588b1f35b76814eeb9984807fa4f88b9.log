@@ -1,0 +1,42 @@
+[WP STAGING Shutdown Function][E_ERROR][2026-02-04 18:09:49] Uncaught Error: Using $this when not in object context in /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-content/plugins/real-time-auto-find-and-replace/core/admin/functions/Masking.php:49
+Stack trace:
+#0 [internal function]: RealTimeAutoFindReplace\admin\functions\Masking::add_masking_rule(Array)
+#1 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-content/plugins/real-time-auto-find-and-replace/core/actions/RTAFAR_CustomAjax.php(148): call_user_func(Array, Array)
+#2 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-includes/class-wp-hook.php(341): RealTimeAutoFindReplace\actions\RTAFAR_CustomAjax->rtafar_ajax('')
+#3 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-includes/class-wp-hook.php(365): WP_Hook->apply_filters('', Array)
+#4 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-includes/plugin.php(522): WP_Hook->do_action(Array)
+#5 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-admin/admin-ajax.php(192): do_ - File: /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-content/plugins/real-time-auto-find-and-replace/core/admin/functions/Masking.php Line: 49 | Is it Fatal Error? Yes | Is it Thrown by WP STAGING? No
+[WP STAGING Shutdown Function][E_ERROR][2026-02-04 18:10:19] Uncaught Error: Using $this when not in object context in /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-content/plugins/real-time-auto-find-and-replace/core/admin/functions/Masking.php:49
+Stack trace:
+#0 [internal function]: RealTimeAutoFindReplace\admin\functions\Masking::add_masking_rule(Array)
+#1 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-content/plugins/real-time-auto-find-and-replace/core/actions/RTAFAR_CustomAjax.php(148): call_user_func(Array, Array)
+#2 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-includes/class-wp-hook.php(341): RealTimeAutoFindReplace\actions\RTAFAR_CustomAjax->rtafar_ajax('')
+#3 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-includes/class-wp-hook.php(365): WP_Hook->apply_filters('', Array)
+#4 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-includes/plugin.php(522): WP_Hook->do_action(Array)
+#5 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-admin/admin-ajax.php(192): do_ - File: /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-content/plugins/real-time-auto-find-and-replace/core/admin/functions/Masking.php Line: 49 | Is it Fatal Error? Yes | Is it Thrown by WP STAGING? No
+[WP STAGING Shutdown Function][E_ERROR][2026-02-04 18:12:04] Uncaught Error: Using $this when not in object context in /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-content/plugins/real-time-auto-find-and-replace/core/admin/functions/Masking.php:49
+Stack trace:
+#0 [internal function]: RealTimeAutoFindReplace\admin\functions\Masking::add_masking_rule(Array)
+#1 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-content/plugins/real-time-auto-find-and-replace/core/actions/RTAFAR_CustomAjax.php(148): call_user_func(Array, Array)
+#2 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-includes/class-wp-hook.php(341): RealTimeAutoFindReplace\actions\RTAFAR_CustomAjax->rtafar_ajax('')
+#3 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-includes/class-wp-hook.php(365): WP_Hook->apply_filters('', Array)
+#4 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-includes/plugin.php(522): WP_Hook->do_action(Array)
+#5 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-admin/admin-ajax.php(192): do_ - File: /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-content/plugins/real-time-auto-find-and-replace/core/admin/functions/Masking.php Line: 49 | Is it Fatal Error? Yes | Is it Thrown by WP STAGING? No
+[WP STAGING Shutdown Function][E_ERROR][2026-02-04 18:15:21] Uncaught Error: Using $this when not in object context in /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-content/plugins/real-time-auto-find-and-replace/core/admin/functions/Masking.php:49
+Stack trace:
+#0 [internal function]: RealTimeAutoFindReplace\admin\functions\Masking::add_masking_rule(Array)
+#1 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-content/plugins/real-time-auto-find-and-replace/core/actions/RTAFAR_CustomAjax.php(148): call_user_func(Array, Array)
+#2 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-includes/class-wp-hook.php(341): RealTimeAutoFindReplace\actions\RTAFAR_CustomAjax->rtafar_ajax('')
+#3 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-includes/class-wp-hook.php(365): WP_Hook->apply_filters('', Array)
+#4 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-includes/plugin.php(522): WP_Hook->do_action(Array)
+#5 /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-admin/admin-ajax.php(192): do_ - File: /home/u416041620/domains/unionsecurityfinance.com/public_html/wp-content/plugins/real-time-auto-find-and-replace/core/admin/functions/Masking.php Line: 49 | Is it Fatal Error? Yes | Is it Thrown by WP STAGING? No
+[WP STAGING Manual Logging][info][2026-02-05 17:25:08] Version Check API Response Headers: Array
+(
+)
+
+[WP STAGING Manual Logging][info][2026-02-05 17:25:08] Version Check API Response Body: {"success":true,"license":"valid","expires":"2035-01-01 23:59:59","license_limit":100,"site_count":1,"activations_left":99,"customer_name":"WP Staging","customer_email":"email@weadown.com"}
+[WP STAGING Manual Logging][info][2026-02-07 17:25:11] Version Check API Response Headers: Array
+(
+)
+
+[WP STAGING Manual Logging][info][2026-02-07 17:25:11] Version Check API Response Body: {"success":true,"license":"valid","expires":"2035-01-01 23:59:59","license_limit":100,"site_count":1,"activations_left":99,"customer_name":"WP Staging","customer_email":"email@weadown.com"}
