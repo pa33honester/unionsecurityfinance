@@ -22,6 +22,7 @@ checkAdmin();
     <link rel="stylesheet" type="text/css" href="../assets/css/libs/fontawesome-icons.css">
     <link href="../css/toastr.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://www.jqueryscript.net/demo/jQuery-International-Telephone-Input-With-Flags-Dial-Codes/build/css/intlTelInput.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <script type="text/javascript">
     function googleTranslateElementInit() {

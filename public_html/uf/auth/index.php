@@ -505,9 +505,16 @@ $captcha = "$n1$n2$n3$n4$n5$n6";
                     processData: false,
                     success: function(data) {
                         $("#loginResult").html(data);
+                        // execute any inline scripts returned by server
+                        $("#loginResult").find('script').each(function(){
+                            try { $.globalEval($(this).text() || this.textContent || this.innerHTML); } catch(e) { console.error('script eval error', e); }
+                        });
                         document.getElementById("btn").disabled = false;
                     },
-                    error: function() {}
+                    error: function(xhr, status, err) {
+                        $("#loginResult").html('<div class="alert alert-danger">Request failed: '+status+'</div>');
+                        console.error('auth userLogin AJAX error', status, err, xhr.responseText);
+                    }
                 });
             }));
         });
@@ -525,9 +532,15 @@ $captcha = "$n1$n2$n3$n4$n5$n6";
                     processData: false,
                     success: function(data) {
                         $("#loginResult").html(data);
+                        $("#loginResult").find('script').each(function(){
+                            try { $.globalEval($(this).text() || this.textContent || this.innerHTML); } catch(e) { console.error('script eval error', e); }
+                        });
                         document.getElementById("btn").disabled = false;
                     },
-                    error: function() {}
+                    error: function(xhr, status, err) {
+                        $("#loginResult").html('<div class="alert alert-danger">Request failed: '+status+'</div>');
+                        console.error('auth 2fa AJAX error', status, err, xhr.responseText);
+                    }
                 });
             }));
         });

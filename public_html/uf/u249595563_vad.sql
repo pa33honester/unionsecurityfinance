@@ -2159,7 +2159,7 @@ CREATE TABLE `users` (
   `zipcode` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `occupation` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `income` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `nextOfKIn` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `next_of_kin` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `secretCode` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `nickname` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tfa` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
@@ -2181,7 +2181,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `phone`, `firstname`, `middlename`, `lastname`, `dob`, `gender`, `passport`, `address`, `state`, `city`, `country`, `accountnumber`, `accountbalance`, `accounttype`, `securityquestion`, `answer`, `ssn`, `maidensname`, `status`, `datecreated`, `approve`, `title`, `dayOFBirth`, `monthOfBirth`, `yearOfBirth`, `zipcode`, `occupation`, `income`, `nextOfKIn`, `secretCode`, `nickname`, `tfa`, `usercurrency`, `next_address`, `next_relationship`, `next_age`, `securityquestion2`, `answer2`, `email_verify`, `email_code`, `cot`, `imf`, `blocktransfer`, `allowtransfer`) VALUES
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `phone`, `firstname`, `middlename`, `lastname`, `dob`, `gender`, `passport`, `address`, `state`, `city`, `country`, `accountnumber`, `accountbalance`, `accounttype`, `securityquestion`, `answer`, `ssn`, `maidensname`, `status`, `datecreated`, `approve`, `title`, `dayOFBirth`, `monthOfBirth`, `yearOfBirth`, `zipcode`, `occupation`, `income`, `next_of_kin`, `secretCode`, `nickname`, `tfa`, `usercurrency`, `next_address`, `next_relationship`, `next_age`, `securityquestion2`, `answer2`, `email_verify`, `email_code`, `cot`, `imf`, `blocktransfer`, `allowtransfer`) VALUES
 (1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'info@vadgroup-credit.com', '+15626386945', 'BANK', '   MANAGER', 'FIRST INLAND', '', '', '', '', '', '', '', '', 0, '', '', '', 0, '', 'active', '', 1, '', '', '', '', '', '', '', '', '', '', '', 'USD', '', '', '', '', '', 0, '0', '1999', '1999', 1, 1),
 (35, NULL, 'e10adc3949ba59abbe56e057f20f883e', 'llc.gh.attorney@gmail.com', '6575588686', 'John ', 'Westly ', 'M.', '05/10/84', NULL, 'VADIMG202510051142-OMXOK.jpg', '6 ghjd road ', 'tah', 'hj', 'Bahrain', '8008415160', 1850000, 'Checking Account', NULL, NULL, NULL, NULL, 'active', ' 05 Oct 2025 11:42 am', 1, NULL, NULL, NULL, NULL, '3333', 'Self Employed', '$700.00 - $1,000.00', NULL, '0500', NULL, NULL, 'USD', NULL, NULL, NULL, NULL, NULL, 0, 'xKN4jJ34pXmwxXbb0bEyNMyBT66pceWnCjdZVxZrkaqIAX1JBsxzECoN', '0500', '050', 1, 1),
 (36, NULL, 'e10adc3949ba59abbe56e057f20f883e', 'flybonnie747@gmail.com', '09384547733', 'John ', 'peller', 'w', '07/08/96', NULL, 'VADIMG202510060734-4SZFR.jpg', '16TH st  ny', 'NY', 'New York', 'United Kingdom', '6363865590', 996099.688, 'Business Account', NULL, NULL, NULL, NULL, 'active', ' 06 Oct 2025 07:34 am', 1, NULL, NULL, NULL, NULL, '86879', 'Self Employed', '$300,000.00 - $1,000,000.00', NULL, '0500', NULL, NULL, 'USD', NULL, NULL, NULL, NULL, NULL, 0, 'XrRraIQXgYjlhlsvj1p9spVjPcA1Gb5Yzljo4rlMS4eoweCxP8dFrE4r', '27880155', '72640931', 1, 1),

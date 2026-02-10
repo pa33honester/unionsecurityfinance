@@ -2,7 +2,7 @@
       <div class="form-group col-sm-4">
           
           <label class="form-label" for="city">Country</label>
-        <select name="country" class="countries form-control" id="countryId"  equired>
+        <select name="country" class="countries form-control" id="countryId" required>
             <option value="Afganistan">Afghanistan</option>
                                         <option value="Albania">Albania</option>
                                         <option value="Algeria">Algeria</option>
@@ -257,7 +257,6 @@
            <label class="form-label" for="state">State/Province</label>
         <input name="state" class="states form-control" id="stateId" Placeholder ='Enter State/Province' required>
       <!--<option value="">Select State</option>-->
-  </>
       </div>
       <div class="form-group col-sm-4">  
       <label class="form-label" for="city">City</label>
@@ -266,9 +265,6 @@
   <!--</select>-->
       </div>
 
-</body>
-</html>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	function ajaxCall() {
     this.send = function(data, url, method, success, type) {

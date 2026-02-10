@@ -1,12 +1,5 @@
 <?php include("header.php"); ?>
 
-<?php
-// Ensure Next of Kin variables exist
-$next_of_kin = $user['next_of_kin'] ?? 'Not provided';
-$next_of_kin_phone = $user['next_of_kin_phone'] ?? 'Not provided';
-$next_of_kin_relationship = $user['next_of_kin_relationship'] ?? 'Not provided';
-?>
-
 <div class="nk-content nk-content-fluid">
     <div class="container-xl wide-lg">
         <div class="nk-content-body">

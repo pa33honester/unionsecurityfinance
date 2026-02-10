@@ -937,17 +937,17 @@ function enrollNewUserStepTwo()
     $address = filterString($_POST["address"]);
     $occupation = filterString($_POST["occupation"]);
     $income = filterString($_POST["income"]);
-    $nextOfKIn = filterString($_POST["nextOfKIn"]);
+    $next_of_kin = filterString($_POST["next_of_kin"]);
 
 
 
     $erroSignUpTwo = 0;
 
-    if (empty($email) || empty($phone) || empty($address) || empty($occupation) || empty($nextOfKIn) || empty($income)) {
+    if (empty($email) || empty($phone) || empty($address) || empty($occupation) || empty($next_of_kin) || empty($income)) {
         $erroSignUpTwo = 1;
         echo "
            <script>
-             toastr.error('Some fields cannot be left Empty', 'Empty fields', {\"progressBar\": true});
+             toastr.error('Some fields cannot be left Empty', 'Empty fields', {\'progressBar\': true});
            </script>
             ";
     }
@@ -974,13 +974,13 @@ function enrollNewUserStepTwo()
         $_SESSION["address"] = $address;
         $_SESSION["occupation"] = $occupation;
         $_SESSION["income"] = $income;
-        $_SESSION["nextOfKIn"] = $nextOfKIn;
+        $_SESSION["next_of_kin"] = $next_of_kin;
         echo "
             <script>
             toastr.success('Going to the next Step', 'Successful', {\"progressBar\": true});
             </script>
             ";
-        header("Refresh:3; url=enroll.php?registerationToken=$regToken&&step=?three");
+        header("Refresh:3; url=enroll.php?registerationToken=$regToken&&step=three");
     }
 }
 
@@ -1119,7 +1119,7 @@ function  enrollNewUSerStepFive()
     $address =  $_SESSION["address"];
     $occupation =  $_SESSION["occupation"];
     $income = $_SESSION["income"];
-    $nextOfKIn =  $_SESSION["nextOfKIn"];
+    $next_of_kin =  $_SESSION["next_of_kin"];
     $accounttype =  $_SESSION["accounttype"];
     $securityQuestion = $_SESSION["securityQuestion"];
     $answer = $_SESSION["answer"];
@@ -1130,8 +1130,8 @@ function  enrollNewUSerStepFive()
     db();
     $accountnumber = randomNumber(10);
     $dateCreated = date("d M Y, H:i");
-    $query = $conn->query("INSERT INTO users(firstname, middlename, lastname, title, gender, nickname, dayOFBirth, monthOfBirth, yearOfBirth , maidensname, email, phone, ssn, country, state, zipcode, address, occupation, income, nextOfKIn, accounttype, securityquestion, answer, secretCode, password, passport, accountnumber, datecreated  )VALUES('$firstname', '$middlename', '$lastname', '$title', '$gender',$nickname '$dayOFBirth', '$monthOfBirth',
-                '$yearOfBirth', '$maidenName', '$email', '$phone', '$ssn', '$country', '$state', '$zipcode', '$address', '$occupation', '$income', '$nextOfKIn', '$accounttype', '$securityQuestion', '$answer', '$secretCode', '$password', '$passport', '$accountnumber', '$dateCreated')");
+    $query = $conn->query("INSERT INTO users(firstname, middlename, lastname, title, gender, nickname, dayOFBirth, monthOfBirth, yearOfBirth , maidensname, email, phone, ssn, country, state, zipcode, address, occupation, income, next_of_kin, accounttype, securityquestion, answer, secretCode, password, passport, accountnumber, datecreated  )VALUES('$firstname', '$middlename', '$lastname', '$title', '$gender',$nickname '$dayOFBirth', '$monthOfBirth',
+                '$yearOfBirth', '$maidenName', '$email', '$phone', '$ssn', '$country', '$state', '$zipcode', '$address', '$occupation', '$income', '$next_of_kin', '$accounttype', '$securityQuestion', '$answer', '$secretCode', '$password', '$passport', '$accountnumber', '$dateCreated')");
 }
 
 function contactForm()

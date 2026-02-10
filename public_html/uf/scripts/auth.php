@@ -832,14 +832,7 @@ if ($_GET['action'] == "userLogin") {
                 $status = $rows['status'];
                 $email = $rows["email"];
                 $approve = $rows['approve'];
-                //CHECK IF ACCOUNT WAS BLOCKED   
-                if ($status == "blocked") {
-                    sleep(3);
-                    echo "<script>
-                        swal({   title: \"$blocked_title\",   text: \"$blocked_msg\",   icon: \"error\" });
-                    </script>";
-                    die();
-                }
+                
                 //CHECK IF ACCOUNT IS ACTIVE
                 if ($status == "active") {
                     //CHECK IF ACCOUNT IS APPROVED
@@ -914,6 +907,14 @@ if ($_GET['action'] == "userLogin") {
                         $_SESSION['verifiedTfa'] = hash('sha256', 'verified');
                         echo "<script> window.location.href='../personal-banking/dashboard.php?viewSource=$loggedtoken';</script>";
                     }
+                }
+                //CHECK IF ACCOUNT WAS BLOCKED   
+                else {
+                    sleep(3);
+                    echo "<script>
+                        swal({   title: \"$blocked_title\",   text: \"$blocked_msg\",   icon: \"error\" });
+                    </script>";
+                    die();
                 }
             }
         }

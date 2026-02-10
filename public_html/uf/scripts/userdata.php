@@ -35,7 +35,7 @@
         // Next of kin fields (may be empty in older records)
         $next_of_kin = $userdetails['next_of_kin'] ?? '';
         $next_of_kin_phone = $userdetails['next_of_kin_phone'] ?? '';
-        $next_of_kin_relationship = $userdetails['next_of_kin_relationship'] ?? '';
+        $next_of_kin_relationship = $userdetails['next_relationship'] ?? '';
 
         // Provide a $user associative array for templates that expect it
         $user = $userdetails;
