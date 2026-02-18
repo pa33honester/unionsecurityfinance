@@ -568,15 +568,59 @@ function getAge($date)
 
 function usserAccessCheck()
 {
-    //require_once("connect.php");
-    //$accesstoken = $_GET["accesstoken"];
-    //$query = $conn->query("SELECT * FROM login WHERE token = '$accesstoken'");
-    //$roww = mysqli_fetch_array($query);
-    //$token = $roww["token"];
+    global $conn;
     //check if there is an active session
     if (empty($_SESSION["loggedToken"])) {
         $url = loggedToken();
         header("location:../?action=login&callBacktoken=$url");
+        exit;
+    }
+
+    // If user is logged in, enforce 'held' status restrictions.
+    // Allowlist: filenames and resource extensions that are always accessible.
+    $allowListNames = [
+        'hold.php', // the hold/info page itself
+        'logout', 'logout.php',
+        'support.php', 'contact.php',
+        // Allow login and dashboard so held users can sign in and view their dashboard
+        'dashboard', 'dashboard.php', 'auth.php', 'login', 'index.php'
+    ];
+    $allowExt = [ 'css', 'js', 'png', 'jpg', 'jpeg', 'gif', 'svg', 'ico', 'woff', 'woff2', 'map' ];
+
+    $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $basename = strtolower(basename($requestPath));
+    $ext = strtolower(pathinfo($requestPath, PATHINFO_EXTENSION));
+
+    // If the request is for a static asset, allow it through.
+    if (!empty($ext) && in_array($ext, $allowExt)) {
+        return;
+    }
+
+    // If the target script/file is in the allowlist, skip hold enforcement.
+    if (in_array($basename, $allowListNames)) {
+        return;
+    }
+
+    // Check user status from database (using accountnumber stored in session)
+    if (!empty($_SESSION['loggedUser'])) {
+        $accountid = mysqli_real_escape_string($conn, $_SESSION['loggedUser']);
+        $q = $conn->query("SELECT status FROM users WHERE accountnumber = '$accountid' LIMIT 1");
+        if ($q && mysqli_num_rows($q) > 0) {
+            $r = mysqli_fetch_assoc($q);
+            $status = isset($r['status']) ? $r['status'] : '';
+            if ($status === 'held') {
+                $isAjax = (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') || $_SERVER['REQUEST_METHOD'] === 'POST';
+                if ($isAjax) {
+                    header('Content-Type: application/json');
+                    echo json_encode(["success" => false, "msg" => "Your account is on hold. Contact administrator."]);
+                    exit;
+                } else {
+                    // Redirect to hold page (use absolute path to avoid relative inconsistencies)
+                    header('Location: /uf/personal-banking/hold.php');
+                    exit;
+                }
+            }
+        }
     }
 }
 

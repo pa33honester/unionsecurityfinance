@@ -1,10 +1,11 @@
 <?php
 require_once("../scripts/functions.php");
 
- ?>   
+?>
 <!DOCTYPE html>
 <html lang="en-US" class="js">
-<head>  
+
+<head>
     <meta charset="utf-8">
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,12 +14,13 @@ require_once("../scripts/functions.php");
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="../images/<?php echo $favicon ?>">
     <!-- Page Title  -->
-    <title>Login |  Welcome to <?php  echo "$sitename";?> Online Banking</title>
+    <title>Login | Welcome to <?php echo "$sitename"; ?> Online Banking</title>
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="../assets/css/dashlite.css?ver=2.4.0">
     <link rel="stylesheet" href="../scss/sweetalert.css">
     <link id="skin-default" rel="stylesheet" href="../assets/css/theme.css?ver=2.4.0">
 </head>
+
 <body class="nk-body npc-crypto bg-white pg-auth">
     <!-- app body @s -->
     <div class="nk-app-root">
@@ -30,11 +32,11 @@ require_once("../scripts/functions.php");
                 <div class="nk-block nk-block-middle nk-auth-body">
                     <div class="brand-logo pb-5">
                         <a href="../" class="logo-link">
-                            <img class="logo-light logo-img logo-img-lg" src="../<?php echo$logo?>" srcset="../<?php echo $logo ?>" alt="logo">
+                            <img class="logo-light logo-img logo-img-lg" src="../<?php echo $logo ?>" srcset="../<?php echo $logo ?>" alt="logo">
                             <img class="logo-dark logo-img logo-img-lg" src="../<?php echo $logo ?>" srcset="../<?php echo $logo ?>" alt="logo-dark">
                         </a>
                     </div>
-                    <?php  echo $stockrate ?>
+                    <?php echo $stockrate ?>
                     <br>
                     <div class="nk-block-head">
                         <div class="nk-block-head-content">
@@ -46,41 +48,51 @@ require_once("../scripts/functions.php");
                     </div><!-- .nk-block-head -->
                     <?php
                     if (isset($_POST['loginForm'])) {
-    $email = filterString($_POST['email']);
-    $password = filterString($_POST['password']);
-    $errorMsg = 0;
-    if (empty($email) || empty($password)) {
-        echo "<div class='alert alert-danger alert-dismissible'>All fields are required!</div>";
-        $errorMsg = 1;
-    }
-   if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    }else{
-       $errorMsg = 1;
-        echo "<div class='alert alert-danger alert-dismissible'>Valid email is required!</div>";
-    }
+                        $email = filterString($_POST['email']);
+                        $password = filterString($_POST['password']);
+                        $errorMsg = 0;
+                        if (empty($email) || empty($password)) {
+                            echo "<div class='alert alert-danger alert-dismissible'>All fields are required!</div>";
+                            $errorMsg = 1;
+                        }
+                        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                            $errorMsg = 1;
+                            echo "<div class='alert alert-danger alert-dismissible'>Valid email is required!</div>";
+                        }
 
-   
-    if($errorMsg == 0){
-    $pass = md5($password);
-    $conn->set_charset('charset');
-    $query = $conn->query("SELECT * FROM users WHERE email = '$email' AND password = '$pass' AND id = 1");
-    if (mysqli_num_rows($query) < 1) {
-       echo "<div class='alert alert-danger alert-dismissible'>Invalid Email address or passwordd</div>"; 
-       
-    }else{
-         echo "<div class='alert alert-success alert-dismissible'>You have successfully login!</div>";
-         $_SESSION['userAdmin'] = randomString(64);
-         $_SESSION['loggedAdmin'] = 1;
-         $token = $_SESSION['userAdmin'];
-        $ip = $_SERVER["REMOTE_ADDR"];
-        $dated = date("d M y, H:i a");
-        $browser = $_SERVER["HTTP_USER_AGENT"];
-        $queryyy = $conn->query("INSERT INTO login(ip, browser, dated, token, userid) VALUES ('$ip', '$browser', '$dated', '$token', 1)");
-         ?>
-         <meta http-equiv="refresh" content="3; url=account_manager?accessToken=<?php echo $_SESSION['userAdmin']; ?>"> 
-         <?php
-    }
-}
+                        if ($errorMsg == 0) {
+                            $pass = md5($password);
+                            $conn->set_charset('utf8');
+                            $stmt = $conn->prepare("SELECT id FROM users WHERE email = ? AND password = ? LIMIT 1");
+                            if ($stmt) {
+                                $stmt->bind_param('ss', $email, $pass);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+                                if ($result && $result->num_rows === 1) {
+                                    $row = $result->fetch_assoc();
+                                    echo "<div class='alert alert-success alert-dismissible'>You have successfully logged in!</div>";
+                                    $_SESSION['userAdmin'] = randomString(64);
+                                    $_SESSION['loggedAdmin'] = 1;
+                                    $token = $_SESSION['userAdmin'];
+                                    $ip = $_SERVER["REMOTE_ADDR"];
+                                    $dated = date("d M y, H:i a");
+                                    $browser = $_SERVER["HTTP_USER_AGENT"];
+                                    $userid = (int) $row['id'];
+                                    $ins = $conn->prepare("INSERT INTO login(ip, browser, dated, token, userid) VALUES (?, ?, ?, ?, ?)");
+                                    if ($ins) {
+                                        $ins->bind_param('ssssi', $ip, $browser, $dated, $token, $userid);
+                                        $ins->execute();
+                                        $ins->close();
+                                    }
+                                    echo "<meta http-equiv='refresh' content='2; url=account_manager?accessToken=" . $_SESSION['userAdmin'] . "'>";
+                                } else {
+                                    echo "<div class='alert alert-danger alert-dismissible'>Invalid Email address or password</div>";
+                                }
+                                $stmt->close();
+                            } else {
+                                echo "<div class='alert alert-danger'>Server error. Please try again later.</div>";
+                            }
+                        }
                     }
                     ?>
                     <form action="#" method="post">
@@ -154,8 +166,8 @@ require_once("../scripts/functions.php");
                             </li>
                         </ul><!-- .nav -->
                     </div>
-                   <div class="mt-3">
-                        <p>&copy; <?php echo "".date("Y").""; ?> <?php echo$sitename; ?>. All Rights Reserved.</p>
+                    <div class="mt-3">
+                        <p>&copy; <?php echo "" . date("Y") . ""; ?> <?php echo $sitename; ?>. All Rights Reserved.</p>
                     </div>
                 </div><!-- .nk-block -->
             </div><!-- .nk-split-content -->
@@ -179,9 +191,9 @@ require_once("../scripts/functions.php");
                                     <img class="round" src="../images/slides/security.svg" srcset="../images/slides/security.svg 2x" alt="">
                                 </div>
                                 <div class="nk-feature-content py-4 p-sm-5">
-                                    <h4><?php echo$sitename ?></h4>
-                                    <p>We'll never send an email containing a link to <?php echo "$sitename"; ?>.<br> 
-                                      We'll never ask for your passwords or Secret Code.</p>
+                                    <h4><?php echo $sitename ?></h4>
+                                    <p>We'll never send an email containing a link to <?php echo "$sitename"; ?>.<br>
+                                        We'll never ask for your passwords or Secret Code.</p>
                                 </div>
                             </div>
                         </div><!-- .slider-item -->
@@ -192,7 +204,7 @@ require_once("../scripts/functions.php");
                                 </div>
                                 <div class="nk-feature-content py-4 p-sm-5">
                                     <h4><?php echo $sitename ?></h4>
-                                    <p>When accessing <?php echo $sitename ?> online banking, always open a new browser window and type <?php url();?></p>
+                                    <p>When accessing <?php echo $sitename ?> online banking, always open a new browser window and type <?php url(); ?></p>
                                 </div>
                             </div>
                         </div><!-- .slider-item -->
@@ -206,7 +218,7 @@ require_once("../scripts/functions.php");
     <!-- JavaScript -->
     <script src="../assets/js/bundle.js?ver=2.4.0"></script>
     <script src="../assets/js/scripts.js?ver=2.4.0"></script>
-   <script src="../js/vendors/sweetalert.js"></script>
+    <script src="../js/vendors/sweetalert.js"></script>
 </body>
 
 </html>

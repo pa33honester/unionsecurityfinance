@@ -354,6 +354,12 @@ include("../scripts/userdata.php");
                                     <li class="dropdown user-dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                             <div class="user-toggle">
+                                                <?php if (!empty($user['status']) && $user['status'] == 'held') { ?>
+                                                    <div class="user-hold-alert mr-2" title="Account on hold" style="display:flex;align-items:center;color:#e85347;font-size:1.05rem;">
+                                                        <em class="icon ni ni-alert-circle-fill"></em>
+                                                        <span class="user-hold-text" style="font-weight:600;color:#e85347;margin-left:6px;font-size:0.95rem;">Your Account is On Hold. Please Contact Customer Service. </span>
+                                                    </div>
+                                                <?php } ?>
                                                 <div class="user-avatar sm">
                                                     <em class="icon ni ni-user-alt"></em>
                                                 </div>

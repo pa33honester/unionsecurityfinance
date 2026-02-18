@@ -833,8 +833,9 @@ if ($_GET['action'] == "userLogin") {
                 $email = $rows["email"];
                 $approve = $rows['approve'];
                 
-                //CHECK IF ACCOUNT IS ACTIVE
-                if ($status == "active") {
+                // Allow active users and users on hold to authenticate.
+                // Held users will be redirected/blocked from actions by usserAccessCheck().
+                if ($status == "active" || $status == "held") {
                     //CHECK IF ACCOUNT IS APPROVED
                     if ($approve == 0) {
                         sleep(3);
